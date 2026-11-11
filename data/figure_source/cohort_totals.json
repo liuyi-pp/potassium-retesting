@@ -1,0 +1,13 @@
+{
+  "raw_ICU_records": 94458,
+  "raw_ICU_admissions": 85242,
+  "raw_ICU_patients": 65366,
+  "final_patients": 5230,
+  "eligible_admissions": 5577,
+  "strata_N": {
+    "5.5_to_lt6": 2895,
+    "6_to_lt6.5": 1079,
+    "ge6.5": 1256
+  },
+  "protocol_sha256": "59bd20e7c66e5a89227b354670f4165f0d5afb2d5dd7b4f5a47d68b2f5e40fdb"
+}

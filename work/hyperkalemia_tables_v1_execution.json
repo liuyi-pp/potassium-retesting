@@ -1,0 +1,12 @@
+{
+  "date": "2026-11-07",
+  "protocol": "Frozen v1.0; main cohort and previous outputs preserved",
+  "baseline": "Only age, recorded sex, actual ICU unit at index storetime, and index chemistry potassium. Continuous variables use median and IQR; categorical variables use n/entire-group N (%). No baseline P-values or models.",
+  "age": "Use the existing v1.0 admission-age estimate from anchor_age plus admission year minus anchor_year. Report estimated age >=90 as a single group and cap ages at 90 for quantiles; render a quantile at that cap as >=90, not an exact age. Confirm that source deidentified older-age records do not derive an age <90. Do not export exact older ages.",
+  "ICU": "Use the uniquely verified actual unit at t0 from transfers. Preserve the eight named true-ICU categories, including zero-count categories, without combining them based on results.",
+  "horizons": [2, 4, 6, 24],
+  "timing": "Same index storetime, first new-specimen numeric sampling record, chemistry plus whole-blood gas, clinical end and exact-tie rules as the formal 4h analysis. A sample exactly at the horizon counts only if before clinical end. No survival or ICU-duration requirement.",
+  "uncertainty": "At each horizon independently apply the existing failed/missing/conflicting-repeat evidence rule. A confirmed repeat by that horizon takes priority; otherwise unresolved evidence is unknown. Report repeat, death, observation-end, still-observed-without-repeat and unknown states; all sum to the enrolled denominator. Unknown-state bounds are not confidence intervals.",
+  "statistics": "Wilson 95% CIs for confirmed-repeat proportions. Primary 4h and first-repeat summaries must reproduce the prior formal aggregate exactly before exporting new results.",
+  "exports": "Aggregate JSON and CSV plus editable English manuscript tables with complete footnotes. No patient rows or raw comments exported. Source hashes must match the previous formal analysis."
+}

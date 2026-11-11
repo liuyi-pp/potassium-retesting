@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "Please cite this versioned repository when referring to the study code."
+title: "Potassium retesting after a first recorded hyperkalemic result in intensive care"
+type: software
+version: 1.0.0
+date-released: 2026-11-11
+url: "https://github.com/liuyi-pp/potassium-retesting"
+repository-code: "https://github.com/liuyi-pp/potassium-retesting"
+authors:
+  - family-names: Liu
+    given-names: Yi
+  - family-names: Wang
+    given-names: Hui
+  - family-names: Sun
+    given-names: Qian
+  - family-names: Wang
+    given-names: Jing
+  - family-names: Sun
+    given-names: Xinzhang
+  - family-names: Luo
+    given-names: Wei
+  - family-names: Liu
+    given-names: Jingjing
+  - family-names: Mao
+    given-names: Na

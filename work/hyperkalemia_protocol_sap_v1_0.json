@@ -1,0 +1,133 @@
+{
+  "version": "1.0",
+  "date": "2026-11-07",
+  "status": "Research protocol and SAP defined after feasibility work; formal extraction and analysis not yet performed under this version",
+  "provenance": "Exploratory cohort and endpoint results were examined before this plan. This is not prospective preregistration or independent confirmatory validation.",
+  "title_zh": "ICU患者首次生化高钾检验结果后的血钾复测模式与后续高钾检出：基于MIMIC-IV的回顾性研究",
+  "design": "Single-center retrospective descriptive cohort using routinely collected deidentified records",
+  "data": {
+    "database": "MIMIC-IV",
+    "release": "3.1",
+    "source_period": "2008-2022",
+    "core_tables": ["hosp.patients", "hosp.admissions", "icu.icustays", "hosp.transfers", "hosp.labevents", "hosp.d_labitems"],
+    "timing_and_coverage_tables": ["icu.chartevents", "icu.d_items"],
+    "chemistry_potassium_items": [50971, 52610],
+    "whole_blood_potassium_items": [50822, 52452],
+    "charted_potassium_items": [220640, 226535, 227442, 227464],
+    "units": "mmol/L or numerically equivalent mEq/L for potassium",
+    "technical_numeric_bounds": {"lower_exclusive": 0, "upper_inclusive": 30},
+    "extreme_values": "Flag values >=10 for source review. Do not remove genuine extreme values solely because of magnitude.",
+    "source_integrity": "Read-only raw sources; preserve release hashes and size/mtime checks; retain aggregate flow and rule versions. No raw comments or patient rows in public exports."
+  },
+  "population": {
+    "adult_age": ">=18 at admission, derived using anchor age/year and admission year; report >=90 as a group",
+    "hospital_scope": "Same linked hospital admission, including ED records already linked to that admission; unique subject/time interval repair only for missing hadm_id. Do not overwrite contradictory supplied IDs.",
+    "ICU_scope": "First icustays record per hospital admission selected before potassium outcomes are inspected. Reconstruct continuous named true-ICU transfer intervals within this record.",
+    "true_ICU_units": ["Medical Intensive Care Unit (MICU)", "Medical/Surgical Intensive Care Unit (MICU/SICU)", "Cardiac Vascular Intensive Care Unit (CVICU)", "Coronary Care Unit (CCU)", "Surgical Intensive Care Unit (SICU)", "Trauma SICU (TSICU)", "Neuro Surgical Intensive Care Unit (Neuro SICU)", "Intensive Care Unit (ICU)"],
+    "ICU_boundary": "Merge adjacent true-ICU intervals. Both index specimen time and lab-system availability must lie in the same continuous interval. Stop observation at first exit or end of verified continuity. Unknown overlapping locations cannot anchor an index.",
+    "analysis_unit": "One event per patient: after applying all admission-level eligibility rules, keep the earliest qualifying index by t0, then hadm_id and labevent_id for exact ties. This is not necessarily the patient's first lifetime hospitalization.",
+    "no_minimum_postindex_stay": true,
+    "no_exclusion_by": ["future availability of a repeat test", "death or exit within four hours", "CKD", "AKI", "dialysis status", "diuretic or potassium-lowering drug exposure"],
+    "clinical_scope": "Inclusive ICU laboratory-process cohort. No treatment or dialysis efficacy comparisons, no severity-adjusted independent-effect claims."
+  },
+  "first_recorded_high_definition": {
+    "threshold_mmol_L": 5.5,
+    "index_source": "Chemistry potassium in labevents; blood-gas-only initial episodes are outside the primary population",
+    "ordering": ["earliest valid storetime", "earliest charttime at a storetime tie", "lowest labevent_id as deterministic tie breaker"],
+    "t0": "Index chemistry storetime: laboratory-system availability, not proof of clinician receipt or review",
+    "specimen_time": "Index charttime: recorded specimen acquisition proxy",
+    "index_time_rules": "Both times present, storetime>=charttime, and both within the same positive-duration verified ICU interval. Interval entry is inclusive and exit exclusive.",
+    "index_comment_rule": "Explicit negation of hemolysis is retained. Nonnegated hemolysis or explicit current contamination, clotting, cancellation/invalidity causes primary exclusion. Blank or fully deidentified comments do not establish absence of hemolysis.",
+    "prior_lab_high": "Exclude an admission if any other numeric, unit-valid chemistry or blood-gas potassium >=5.5 was available strictly before t0 in the same linked admission. Earlier numeric high results with suspect comments also cause exclusion from the conservative primary cohort. Include other assays on the same index specimen when checking earlier availability; do not require a different specimen for this history check.",
+    "prior_chart_high": "Exclude an admission with a valid earlier charted potassium >=5.5 (storetime<t0, storetime>=charttime). This can include earlier documentation of the index result; classify as ambiguous index timing rather than necessarily an independent prior disease episode.",
+    "uncertain_prior_high": "If an earlier specimen has numeric potassium >=5.5 but missing/inverted availability prevents determination of ordering, classify history as uncertain and exclude from the conservative primary cohort; report counts.",
+    "no_later_reentry": "If the admission has an earlier numeric high result that disqualifies the proposed index, do not choose a later clean result to restore eligibility.",
+    "no_normal_baseline_requirement": true,
+    "interpretation": "First qualifying observed high result in the linked admission; not first lifetime hyperkalemia, proof of incident disease, or clinically adjudicated true hyperkalemia."
+  },
+  "repeat_definition": {
+    "sources": ["chemistry potassium in labevents", "whole-blood gas potassium in labevents"],
+    "required": "Different specimen_id from index, identifiable recorded specimen time strictly after t0, numeric potassium within technical bounds and accepted units, and collection before clinical observation end. Both index and repeat must be uniquely linked to the same patient/admission.",
+    "technical_duplicates": "Collapse identical same-specimen/source records. Unresolved same-specimen/source conflicting times or values are flagged as indeterminate rather than resolved by taking the maximum. An uncertain earlier high cannot be erased to permit later re-entry at a cleaner index.",
+    "collection_vs_report": "An eventual numeric result may confirm a collection inside the window even if the result becomes available after that window. This is a collection-record endpoint, not timely-result-availability or clinician-review completion.",
+    "non_numeric_or_failed": "Cancelled/nonnumeric/failed-specimen records are reported separately. They do not meet the numeric-repeat endpoint and must not be described as proof that no blood was drawn.",
+    "repeat_comment_rule": "A numeric record with a possible hemolysis comment may establish a sampling record but is not used to classify the subsequent potassium value as supported high/normal. An explicitly cancelled or invalid result, or unresolved timing conflict, does not establish a confirmed numeric-repeat event; retain the evidence as a failed/indeterminate record rather than silently calling it absent sampling. If no confirmed event can resolve the endpoint, report an unknown state and bounds.",
+    "simultaneous_repeat_rule": "At the first new specimen timestamp, prefer chemistry over blood gas, then lowest labevent_id. If simultaneous results differ by >0.5 mmol/L, flag the value outcome as indeterminate; retain evidence of sampling. The 0.5 cutoff is a technical discordance flag, not a clinical diagnostic threshold.",
+    "same_t0_record": "Distinct specimens stamped exactly at t0 are counted separately as simultaneous records, not post-result new collections in the primary endpoint.",
+    "precollected_specimens": "A specimen collected <=t0 whose potassium becomes available later is a precollected later-reported result, not a new post-t0 collection. No inference is made that the potassium order was already pending at t0.",
+    "charted_records": "Do not treat chartevents rows as confirmed new specimens. Source/value/time matching at 5 minutes and stress checks at 30/60 minutes are coverage QC. Documentation of unmatched potassium results is a distinct availability sensitivity, not a substitute sampling endpoint."
+  },
+  "followup": {
+    "maximum_hours": 24,
+    "clinical_end": "Earliest of continuous verified ICU interval end, hospital discharge, or death",
+    "ties": "At an exact tie with death or clinical interval exit, end-of-observation takes priority. A collection exactly at 4h (or 24h) is included if clinical observation continues beyond that time.",
+    "unknown_location": "A break in verified ICU continuity ends this operational interval. Report known transfer-out and loss of verified location separately; neither is labelled a care failure.",
+    "no_extension_to_later_ICU_return": true
+  },
+  "outcomes": {
+    "single_primary": {
+      "name": "Four-hour proportion with a documented new-specimen numeric potassium repeat before death or end of the current verified ICU interval",
+      "numerator": "Patients with 0<T_repeat<=4h and T_repeat<T_clinical_end",
+      "denominator": "All enrolled unique patients; do not require survival or an ICU stay of at least four hours",
+      "parallel_states": ["repeat before end", "death without prior repeat", "continuous verified ICU interval ended without prior repeat", "still in the interval at 4h without repeat"],
+      "unknown_state": "Report indeterminate follow-up separately; do not call it non-retesting. If present, report confirmed-repeat proportion and best/worst bounds over all enrolled patients, and withhold a claim that actual retesting is fully identified."
+    },
+    "secondary": [
+      "Time to first documented numeric new-specimen repeat, median and IQR conditional on observing a repeat within 24h or earlier interval end",
+      "Four-hour no-new-specimen proportion conditional on a fully verified four-hour observation interval; supplementary denominator, not the primary endpoint",
+      "New-specimen repeat proportions at 2, 6 and 24h using the same all-enrolled denominator and parallel end-event states",
+      "Proportion with potassium >=5.5 at the first new-specimen numeric repeat among supported, interpretable first-repeat values; do not skip an uninterpretable first repeat to choose a later cleaner value"
+    ],
+    "not_interpreted_as": ["guideline adherence", "nursing omission", "treatment failure", "continuous or rebound hyperkalemia", "causal effects of retesting timing"]
+  },
+  "minimal_variables": {
+    "clinical_descriptors_only": ["age", "recorded sex", "actual ICU type at t0", "index potassium"],
+    "necessary_linkage": ["subject_id", "hadm_id", "stay_id", "labevent_id", "specimen_id", "itemid"],
+    "necessary_measurement_fields": ["charttime", "storetime", "valuenum", "valueuom", "comments"],
+    "necessary_time_boundaries": ["admittime", "ICU transfer intime/outtime", "dischtime", "deathtime"],
+    "derived_quality_flags": ["prior documented lower potassium", "prior lab/chart high or uncertain ordering", "precollected later-reported specimen", "comment category", "same-time value discordance", "source and end-of-observation reason"],
+    "not_collected_for_primary_models": ["SOFA/APACHE", "urine output", "creatinine-derived AKI stage", "full comorbidity panel", "drug doses", "ECG waveform", "nursing handover content"]
+  },
+  "statistics": {
+    "primary_approach": "Descriptive empirical cumulative occurrence within the operational ICU episode. With fully known repeat/death/interval-end states, calculate counts divided by all enrolled patients and show every parallel state. Do not censor deaths/ICU exits in an ordinary Kaplan-Meier estimate or infer that 1-repeat probability equals a failure rate.",
+    "confidence_intervals": "Wilson 95% confidence intervals for patient-level proportions; median and IQR for observed intervals. Unknown first-repeat values remain an explicit denominator category.",
+    "fixed_strata_mmol_L": ["5.5 to <6.0", "6.0 to <6.5", ">=6.5"],
+    "additional_descriptions": "Describe actual ICU type. Age and sex are baseline descriptors, not a variable-selection or mortality-adjustment pool.",
+    "hypothesis_testing": "No primary P-value, no significance-driven cutoffs, no baseline-table P-values, no confirmatory treatment comparison. Report group-specific estimates and uncertainty.",
+    "missing_data": "No imputation of potassium, specimen identity, index time, prior-result timing, or location. Missing sex is retained as unknown. Unknown adult eligibility or an unidentifiable index prevents inclusion. Record and report every exclusion, including admission-level and patient-level flow.",
+    "sample_size": "Use all eligible unique patients. Feasibility suggests several thousand, but formal N is not fixed from the previous 5892-admission audit because this protocol tightens first-record history and selects one event per patient. No retrospective observed-power calculation.",
+    "no_primary_models": ["multivariable mortality regression", "propensity-score matching", "prediction modelling", "AUC", "SHAP", "outcome-optimized thresholds"]
+  },
+  "five_sensitivities": [
+    {"id": "S1", "name": "Earlier documented lower value", "rule": "Restrict the primary cohort to patients with a prior numeric lab potassium <5.5 in the same admission before t0. This is an observed lower-to-higher subgroup, not proof of new biological disease."},
+    {"id": "S2", "name": "Comment-policy tolerance", "rule": "Allow reported numeric index results with hemolysis-only cautionary comments while still excluding explicit invalidity/cancellation. Keep first-event ordering and the earlier-result exclusions unchanged. Explicitly negative hemolysis comments are retained in all versions."},
+    {"id": "S3", "name": "Chemistry-only repeat source", "rule": "On the fixed primary cohort and t0, count chemistry-only repeats and compare with the chemistry-plus-blood-gas primary definition. Do not reselect the index."},
+    {"id": "S4", "name": "Precollected later-reported specimen", "rule": "Exclude patients with a separate specimen collected between index collection and t0 whose potassium becomes available after t0. No inference about the timing of the potassium order is made."},
+    {"id": "S5", "name": "All qualifying admissions", "rule": "Include all qualifying admissions with at most one event per admission. Use patient-cluster bootstrap with 2000 replicates and seed 20261107 for proportion intervals, rather than treating repeated admissions as independent patients."}
+  ],
+  "mandatory_QC_appendix": [
+    "Original versus negation-aware comment classification, with no raw free-text exports",
+    "Exact physical-ICU interval reconstruction versus original icustays interval on shared index events; exclude intermediate units from the main definition",
+    "Lab/chart potassium source/value/time matching and unmatched-record coverage at 5/30/60 minutes",
+    "Earlier high results by source, before/within the current ICU interval, including possible earlier documentation of the index specimen",
+    "Simultaneous sampling, time conflicts, unreportable values, unit conversion, unresolved specimen conflicts and individual flow denominators",
+    "Formal first-event rule is stricter than the exploratory 5892-admission cohort; reproduce legacy counts as QC only, not as a target to force the new extraction to match"
+  ],
+  "reporting": {
+    "guidance": ["STROBE cohort reporting", "RECORD routinely collected health-data reporting"],
+    "planned_tables": ["Cohort flow and four clinical descriptors", "Primary four-hour states and repeat timing by fixed potassium stratum", "First-repeat high-result detection and five sensitivities"],
+    "planned_figures": ["Cohort flow diagram", "Descriptive repeat proportions over fixed windows with parallel end-event states"],
+    "claims": "Historical recorded monitoring patterns and conditional high-result detection only. Four hours is a research window, not a universal clinical compliance deadline.",
+    "ethics_and_access": "Record actual database authorization/training and applicable institutional ethics determination. Do not invent an approval identifier or claim preregistration.",
+    "amendments": "Version and date any necessary changes before applying them to formal analyses. State feasibility-driven choices and later exploratory analyses transparently. Do not change rules to obtain significance."
+  },
+  "sources": [
+    "https://physionet.org/content/mimiciv/3.1/",
+    "https://mimic.mit.edu/docs/iv/modules/hosp/labevents.html",
+    "https://mimic.mit.edu/docs/iv/modules/icu/chartevents.html",
+    "https://mimic.mit.edu/docs/iv/modules/icu/icustays.html",
+    "https://mimic.mit.edu/docs/iv/modules/hosp/transfers.html",
+    "https://www.strobe-statement.org/",
+    "https://pmc.ncbi.nlm.nih.gov/articles/PMC4868601/"
+  ]
+}

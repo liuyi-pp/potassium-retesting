@@ -1,0 +1,33 @@
+{
+  "release": "v1.0.0",
+  "sha256": {
+    ".gitignore": "ae5e11d50fe19f1306c5b6d59fdeca5431429f765b3502e7ccbc5d9803239ce6",
+    "CITATION.cff": "64109118e0213c8cb6d1e44dbd30c37636a838bfae49456d40a11fd07af2de60",
+    "data/figure_source/cohort_flow.csv": "6ea0f4eef93df91baa1b468c47e5c534b050a7d51e2fb8bc02b0242a23db14ae",
+    "data/figure_source/cohort_totals.json": "3eed4b712c953c740490f363d537fdc0dc989b94b7b3bbea613b252ad4517879",
+    "data/figure_source/time_windows.csv": "253eb9040301d1ad30e45e84fb3b10b69a4b8d89d3b1ec8b4c87f64b5fb11244",
+    "docs/CODE_AVAILABILITY.md": "ad4fb2fc801617bcef45fad65169ec0084d307114c5a1327e877a65f0c88cc59",
+    "docs/REPRODUCIBILITY.md": "34fe468b07288d07745474bf28da15b0e70a2ba89f7e469c5036a394f165d0ed",
+    "provenance/release_validation.json": "54f4637d8b065a9b3a87934025d010f2d65d0ba26fc17b7b073243378f90d9fe",
+    "provenance/source_manifest.json": "6b2b906b9cb830feaabcfa5b8958fc4201d1b11d97a01996157962b3d387e278",
+    "README.md": "9e7f0f2cb33a770d0e51d3b6789483b9aed5f409467865e2fda886abd92acd5c",
+    "requirements-analysis.txt": "f36cb59b3a3402cf36f4481c9f15fb2fd98e9961bf4b23cf18473155f5f02de9",
+    "requirements-figure-validation.txt": "d6c6a12efd6be1c8da0d13447dbfda5648d224f830409155dfaebcca5cf546a3",
+    "requirements-figures.txt": "a65960cd5fca3e3672930976385607f2d45ae52319eec46e2775c298de9cf571",
+    "scripts/reproduce_figures.py": "1d077be856bbb1fdbe1ab89ba684a1ef15d10d638ef49fcd0c5e7d7361c8e7e5",
+    "scripts/run_analysis.py": "6a3b6af24f5aa48af4fb5426fcacf789af0162cf3a7048d79602388055fb05d5",
+    "scripts/validate_figures.py": "7204cb34679afe5a01c9656c46e063c1408664970b1924131932a42091409ba3",
+    "scripts/validate_public_bundle.py": "e3819d7ee33fffa7df9819516a16daadb5b063206d8bf1904c41d494b2a42207",
+    "tests/test_artificial_rules.py": "5db5dd97313c151367b676acb18e77299b16841ee650acdb2282467b10a1b751",
+    "work/describe_hyperkalemia_observation_duration_v1.py": "fc2b7325e1f0ca4cd2031dd47e11dc337534b98d257eb41daa13053697171581",
+    "work/hyperkalemia_formal_v1_core.py": "2234aca876eab27896127059cd4703dcd9d9ea1162ead98d5ef6fb1b2dac48df",
+    "work/hyperkalemia_observation_duration_contract_v1.json": "87cb7952742421d8574064f5754c89d730014a64dafa2c8b80b315dbbc3588c9",
+    "work/hyperkalemia_protocol_sap_v1_0.json": "59bd20e7c66e5a89227b354670f4165f0d5afb2d5dd7b4f5a47d68b2f5e40fdb",
+    "work/hyperkalemia_sensitivity_v1_core.py": "2c11935e505c2caac20696e3b2922a6adcd37d730ee7fabbad69609ff9e79c96",
+    "work/hyperkalemia_sensitivity_v1_execution.json": "7207fbae71e7c746c9ba1b500cdd7ab8706ad938b728314f25cacf069980ef43",
+    "work/hyperkalemia_tables_v1_core.py": "411e12c891a04063626930556ab046ec86a0982d57d8bede7edb7dee0cba42cb",
+    "work/hyperkalemia_tables_v1_execution.json": "edcdad93830ff052f908651df782623bd8bc75f24cb5ebc2ec0b7b7408c0f3ac",
+    "work/potassium_validation_core.py": "0a0bbefa1f7a8b17b7584abc795e58fad22aca7a08ec16289af59b8d8174b563",
+    "work/Supplementary_File_1_algorithm_rules.py": "769581f5811ba6f4deaf87f1ccd75f2198321a32872c3d3ada976d8c0444c8cd"
+  }
+}

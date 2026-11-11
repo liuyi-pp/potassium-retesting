@@ -1,0 +1,15 @@
+{
+  "date": "2026-11-10",
+  "analysis": "Reporting addendum to frozen v1.0; actual observation duration only",
+  "authorization": "User requests existing-summary search, then necessary description from the unchanged v1.0 cohort and existing time fields if absent",
+  "population": "Same deterministic v1.0 selection; 5230 unique patients and 5577 eligible admissions before patient selection",
+  "start": "Index chemistry storetime t0, unchanged",
+  "end": "Earliest of verified continuous ICU episode_stop, dischtime, deathtime if present, and t0+24h",
+  "duration_hours": "maximal permitted follow-up duration from t0 to the above end; not stopped at first repeat; no additional exclusions or imputation",
+  "descriptions": ["N", "duration median and linear Q1/Q3 in hours", "sum of patient observation hours", "duration below 24h n and percent", "duration equal to 24h n and percent"],
+  "groups": ["overall", "5.5_to_lt6", "6_to_lt6.5", "ge6.5"],
+  "boundary": "Duration exactly 24h belongs to the 24h duration category even if clinical end ties the cap. Original repeat-at-end tie rules remain unchanged.",
+  "verification": ["Existing source/code/protocol hashes", "Exact 13-step flow reproduction", "Exact main outcome summaries", "Exact original 4-group baseline", "Exact 16 window results and states", "Original continued-observation beyond4h denominator", "Direct timestamps versus min(follow_h,24)", "Finite positive durations, all N preserved", "All source SHA256 and size/mtime unchanged"],
+  "limits": "Reporting-completeness addendum performed after the original analysis; no claim this summary was prospectively prespecified; no new clinical variables, outcomes, sensitivities, CI estimates, tests or models",
+  "privacy": "Patient rows and identifiers remain in RAM; exports aggregate only. Never overwrite existing v1.0 artifacts."
+}

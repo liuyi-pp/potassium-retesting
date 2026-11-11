@@ -1,0 +1,13 @@
+{
+  "protocol_version": "1.0",
+  "date": "2026-11-07",
+  "purpose": "Operational details fixed before examining the five sensitivity estimates; no change to the frozen v1.0 protocol or original main-analysis files",
+  "S1": "Restrict the fixed unique-patient main cohort to a prior unit-valid numeric laboratory K<5.5 with valid availability strictly before t0 in the same admission. No new requirement for a clean comment or different specimen is imposed; quantify those limitations in QC. Do not replace the selected patient event with a later qualifying admission.",
+  "S2": "Allow hemolysis-only cautionary index comments, still excluding explicit invalidity/cancellation. Reconstruct the cohort using unchanged first-event sorting, actual ICU boundaries, earlier numeric lab/chart high and uncertain-history exclusions. Select one earliest eligible event per patient. The repeat-result comment rule remains identical to the main analysis.",
+  "S3": "Fix all main-cohort patients, index event, t0 and potassium strata. Only chemistry records establish repeats and the first chemistry repeat value; do not reselect the index or replace an uninterpretable first chemistry value with a later value.",
+  "S4": "Restrict the fixed main cohort by excluding a distinct identifiable specimen with unit-valid numeric K, recorded collection time >= index collection and <= t0, valid availability strictly after t0, in the same linked admission. Include lower-bound timestamp ties conservatively and quantify them separately. This detects a precollected later-reported specimen, not proof of when a test was ordered.",
+  "S5": "Use all eligible primary-rule admissions, one event per admission. Sample the full set of unique patients with replacement, carrying every admission for each sampled patient into each replicate. Compute admission-weighted proportions overall and in each potassium stratum using the same resample for all estimands. Use 2000 replicates, numpy.default_rng(20261107), two-sided percentile 2.5/97.5 confidence intervals with linear quantiles. Count undefined bootstrap denominators explicitly.",
+  "intervals_S1_S4": "Patient-level Wilson 95% confidence intervals",
+  "robustness": "Report absolute percentage-point changes, population/denominator changes, unknown-state bounds and whether severity patterns persist. No retrospective pass/fail threshold or P-value is introduced.",
+  "privacy": "Restricted records remain in process RAM; only aggregate results are exported. Read-only source hashes and original main results must be reproduced."
+}

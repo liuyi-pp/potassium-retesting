@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+.venv*/
+.env
+.env.*
+outputs/
+reproduced_figures/
+local_data/
+data/mimic-iv-3.1/
+*.csv.gz
+*.parquet
+*.pkl
+*.pickle
+*.feather
+*.sqlite*
+*.db
+*.log

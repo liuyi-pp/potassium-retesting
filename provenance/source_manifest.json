@@ -1,0 +1,120 @@
+{
+  "analysis_version": "1.0",
+  "release": "v1.0.0",
+  "date": "2026-11-11",
+  "scope": "Code packaging and aggregate figure reproduction only; no fresh restricted-data analysis",
+  "files": [
+    {
+      "source": "work/hyperkalemia_formal_v1_core.py",
+      "distributed": "work/hyperkalemia_formal_v1_core.py",
+      "source_sha256": "d8a6cd2623959c6771be42123b4fcd74e4a3d5eef095e9368c48089ea3330a2c",
+      "distributed_sha256": "2234aca876eab27896127059cd4703dcd9d9ea1162ead98d5ef6fb1b2dac48df",
+      "change": "Only import os and replace machine-specific input root with MIMIC_IV_ROOT configuration; function ASTs unchanged"
+    },
+    {
+      "source": "work/hyperkalemia_sensitivity_v1_core.py",
+      "distributed": "work/hyperkalemia_sensitivity_v1_core.py",
+      "source_sha256": "2c11935e505c2caac20696e3b2922a6adcd37d730ee7fabbad69609ff9e79c96",
+      "distributed_sha256": "2c11935e505c2caac20696e3b2922a6adcd37d730ee7fabbad69609ff9e79c96",
+      "change": "Byte-identical copy"
+    },
+    {
+      "source": "work/hyperkalemia_tables_v1_core.py",
+      "distributed": "work/hyperkalemia_tables_v1_core.py",
+      "source_sha256": "411e12c891a04063626930556ab046ec86a0982d57d8bede7edb7dee0cba42cb",
+      "distributed_sha256": "411e12c891a04063626930556ab046ec86a0982d57d8bede7edb7dee0cba42cb",
+      "change": "Byte-identical copy"
+    },
+    {
+      "source": "work/describe_hyperkalemia_observation_duration_v1.py",
+      "distributed": "work/describe_hyperkalemia_observation_duration_v1.py",
+      "source_sha256": "fc2b7325e1f0ca4cd2031dd47e11dc337534b98d257eb41daa13053697171581",
+      "distributed_sha256": "fc2b7325e1f0ca4cd2031dd47e11dc337534b98d257eb41daa13053697171581",
+      "change": "Byte-identical copy"
+    },
+    {
+      "source": "work/hyperkalemia_protocol_sap_v1_0.json",
+      "distributed": "work/hyperkalemia_protocol_sap_v1_0.json",
+      "source_sha256": "59bd20e7c66e5a89227b354670f4165f0d5afb2d5dd7b4f5a47d68b2f5e40fdb",
+      "distributed_sha256": "59bd20e7c66e5a89227b354670f4165f0d5afb2d5dd7b4f5a47d68b2f5e40fdb",
+      "change": "Byte-identical copy"
+    },
+    {
+      "source": "work/hyperkalemia_sensitivity_v1_execution.json",
+      "distributed": "work/hyperkalemia_sensitivity_v1_execution.json",
+      "source_sha256": "7207fbae71e7c746c9ba1b500cdd7ab8706ad938b728314f25cacf069980ef43",
+      "distributed_sha256": "7207fbae71e7c746c9ba1b500cdd7ab8706ad938b728314f25cacf069980ef43",
+      "change": "Byte-identical copy"
+    },
+    {
+      "source": "work/hyperkalemia_tables_v1_execution.json",
+      "distributed": "work/hyperkalemia_tables_v1_execution.json",
+      "source_sha256": "edcdad93830ff052f908651df782623bd8bc75f24cb5ebc2ec0b7b7408c0f3ac",
+      "distributed_sha256": "edcdad93830ff052f908651df782623bd8bc75f24cb5ebc2ec0b7b7408c0f3ac",
+      "change": "Byte-identical copy"
+    },
+    {
+      "source": "work/hyperkalemia_observation_duration_contract_v1.json",
+      "distributed": "work/hyperkalemia_observation_duration_contract_v1.json",
+      "source_sha256": "87cb7952742421d8574064f5754c89d730014a64dafa2c8b80b315dbbc3588c9",
+      "distributed_sha256": "87cb7952742421d8574064f5754c89d730014a64dafa2c8b80b315dbbc3588c9",
+      "change": "Byte-identical copy"
+    },
+    {
+      "source": "work/potassium_validation_core.py",
+      "distributed": "work/potassium_validation_core.py",
+      "source_sha256": "06f72efdb9731e491ac0bf40f68a4ea224e6119c591ee54ee5fefef5a2430d5a",
+      "distributed_sha256": "0a0bbefa1f7a8b17b7584abc795e58fad22aca7a08ec16289af59b8d8174b563",
+      "change": "Extract only the two used helper functions; their ASTs are identical; remove unused exploratory workflow"
+    },
+    {
+      "source": "outputs/hyperkalemia_v0_5_final_review_2026_11_11/Supplementary_File_1_algorithm_rules.py",
+      "distributed": "work/Supplementary_File_1_algorithm_rules.py",
+      "source_sha256": "769581f5811ba6f4deaf87f1ccd75f2198321a32872c3d3ada976d8c0444c8cd",
+      "distributed_sha256": "769581f5811ba6f4deaf87f1ccd75f2198321a32872c3d3ada976d8c0444c8cd",
+      "change": "Byte-identical copy"
+    },
+    {
+      "source": "outputs/hyperkalemia_v1_figures/make_figures.py",
+      "distributed": "scripts/reproduce_figures.py",
+      "source_sha256": "1d077be856bbb1fdbe1ab89ba684a1ef15d10d638ef49fcd0c5e7d7361c8e7e5",
+      "distributed_sha256": "1d077be856bbb1fdbe1ab89ba684a1ef15d10d638ef49fcd0c5e7d7361c8e7e5",
+      "change": "Byte-identical copy"
+    },
+    {
+      "source": "outputs/hyperkalemia_v1_figures/validate_figures.py",
+      "distributed": "scripts/validate_figures.py",
+      "source_sha256": "f8eeaf56901ea50c0ca093e7a56cf48e5261a5411a6b5dab370e1420be2da5a4",
+      "distributed_sha256": "7204cb34679afe5a01c9656c46e063c1408664970b1924131932a42091409ba3",
+      "change": "Only make input/output directory arguments portable; figure-data and format checks unchanged"
+    },
+    {
+      "source": "outputs/hyperkalemia_v1_figures/requirements-figures.txt",
+      "distributed": "requirements-figures.txt",
+      "source_sha256": "a65960cd5fca3e3672930976385607f2d45ae52319eec46e2775c298de9cf571",
+      "distributed_sha256": "a65960cd5fca3e3672930976385607f2d45ae52319eec46e2775c298de9cf571",
+      "change": "Byte-identical copy"
+    },
+    {
+      "source": "outputs/hyperkalemia_v1_figures/source_data/cohort_flow.csv",
+      "distributed": "data/figure_source/cohort_flow.csv",
+      "source_sha256": "6ea0f4eef93df91baa1b468c47e5c534b050a7d51e2fb8bc02b0242a23db14ae",
+      "distributed_sha256": "6ea0f4eef93df91baa1b468c47e5c534b050a7d51e2fb8bc02b0242a23db14ae",
+      "change": "Byte-identical copy"
+    },
+    {
+      "source": "outputs/hyperkalemia_v1_figures/source_data/time_windows.csv",
+      "distributed": "data/figure_source/time_windows.csv",
+      "source_sha256": "253eb9040301d1ad30e45e84fb3b10b69a4b8d89d3b1ec8b4c87f64b5fb11244",
+      "distributed_sha256": "253eb9040301d1ad30e45e84fb3b10b69a4b8d89d3b1ec8b4c87f64b5fb11244",
+      "change": "Byte-identical copy"
+    },
+    {
+      "source": "outputs/hyperkalemia_v1_figures/source_data/cohort_totals.json",
+      "distributed": "data/figure_source/cohort_totals.json",
+      "source_sha256": "3eed4b712c953c740490f363d537fdc0dc989b94b7b3bbea613b252ad4517879",
+      "distributed_sha256": "3eed4b712c953c740490f363d537fdc0dc989b94b7b3bbea613b252ad4517879",
+      "change": "Byte-identical copy"
+    }
+  ]
+}

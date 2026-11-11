@@ -1,0 +1,14 @@
+﻿stage,excluded_admissions_this_step,remaining_admissions,remaining_patients
+01_first_ICU_record_per_admission,,85242,65366
+02_linked_patient_admission_metadata,0,85242,65366
+03_adult_age_ge18,0,85242,65366
+04_valid_positive_time_and_alive_at_ICU_entry,126,85116,65263
+05_numeric_chemistry_high_in_first_ICU_record_window,75794,9322,8465
+06_identifiable_nonconflicting_index_specimen,0,9322,8465
+07_valid_index_availability_within_record_window,80,9242,8390
+08_negation_aware_index_comment_rule,907,8335,7575
+09_sample_and_result_in_same_verified_continuous_ICU,92,8243,7491
+10_no_earlier_numeric_lab_high_regardless_comment,2556,5687,5325
+11_no_earlier_charted_high,110,5577,5230
+12_no_unresolvable_prior_high_timing,0,5577,5230
+13_first_qualifying_event_per_patient,347,5230,5230

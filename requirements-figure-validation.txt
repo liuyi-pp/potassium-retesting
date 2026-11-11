@@ -1,0 +1,2 @@
+-r requirements-figures.txt
+pypdf==6.21.4

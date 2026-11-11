@@ -1,0 +1,20 @@
+{
+  "release": "v1.0.0",
+  "date": "2026-11-11",
+  "python": "3.12.14",
+  "synthetic_software_tests": {
+    "passed": 18,
+    "failed": 0,
+    "patient_data_used": false
+  },
+  "formal_function_ASTs": "all unchanged",
+  "original_aggregate_inputs": "byte-identical",
+  "aggregate_figure_reproduction": {
+    "Figure_1_cohort_flow": "All PNG pixels identical to original rendered manuscript figure",
+    "Figure_2_retesting_by_potassium": "All PNG pixels identical to original rendered manuscript figure"
+  },
+  "figure_data_and_export_validation": "passed",
+  "restricted_data_extraction_rerun": false,
+  "additional_variables_or_models": false,
+  "licence": "No open-source license selected"
+}
