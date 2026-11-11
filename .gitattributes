@@ -1,0 +1,2 @@
+# Keep the original source and aggregate bytes identical across operating systems.
+* -text

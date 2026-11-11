@@ -50,3 +50,5 @@ The executable source has cohort-size and hash checks specific to the original v
 The primary denominator retains all enrolled patients. First-repeat high-potassium detection is conditional on sampling and first-value interpretability. A later clean value does not replace an uninterpretable first candidate. The study describes recorded processes; it does not establish guideline adherence, nursing omission, treatment effectiveness or causality.
 
 No open-source license has been selected for this release. Public availability is not a grant of rights to redistribute restricted MIMIC data. Cite the repository and fixed release when referring to the code. The [citation file](CITATION.cff) contains the author order confirmed for this manuscript.
+
+Release v1.0.1 fixes Git line-ending preservation so distributed file hashes match the original aggregate inputs. Use v1.0.1; the initial upload is superseded.
